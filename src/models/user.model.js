@@ -53,7 +53,7 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next) {    // it's a middleware and remember here you don't use arrow function bcz arrow function doesn't take 'this'
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 10);    //.hash is use or checking
+    this.password = await bcrypt.hash(this.password, 10);    //.hash is use or checking
     next();
     
 })
